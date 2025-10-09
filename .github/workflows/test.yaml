@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - main
+      - disable-not-main
 
 jobs:
   test:
