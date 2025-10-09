@@ -2,9 +2,6 @@ name: Test action main branch
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "* * * * 10"  # every hour
-
 jobs:
   clean:
     runs-on: ubuntu-latest
