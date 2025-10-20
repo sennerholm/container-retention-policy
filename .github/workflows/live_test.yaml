@@ -37,7 +37,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           cut-off: 30m
           image-names: container-retention-policy
-          image-tags: !fetch-digests !multi-1 !test-2* !test-3* !test-4* !test-5*
+          image-tags: '!fetch-digests !multi-1 !test-2* !test-3* !test-4* !test-5*'
           tag-selection: both
           timestamp-to-use: created_at
           dry-run: true
