@@ -18,17 +18,30 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: sennerholm/container-retention-policy@fetch-digests
-        name: Delete test-1-* images with a temporal token
+        name: Delete test-1-* and untagged images with a temporal token
         with:
           account: user
           token: ${{ secrets.GITHUB_TOKEN }}
           cut-off: 30m
           image-names: container-retention-policy
-          image-tags: test-* !fetch-digests !multi-1 !test-2* !test-3* !test-4* !test-5*
+          image-tags: !fetch-digests !multi-* !test-2* !test-3* !test-4* !test-5*
           tag-selection: both
           timestamp-to-use: created_at
           dry-run: true
           rust-log: container_retention_policy=debug
+      - uses: sennerholm/container-retention-policy@fetch-digests
+        name: Delete multi-2
+        with:
+          account: user
+          token: ${{ secrets.GITHUB_TOKEN }}
+          cut-off: 30m
+          image-names: container-retention-policy
+          image-tags: !fetch-digests !multi-1 !test-2* !test-3* !test-4* !test-5*
+          tag-selection: both
+          timestamp-to-use: created_at
+          dry-run: true
+          rust-log: container_retention_policy=debug
+          
   produce:
     runs-on: ubuntu-latest
     name: Upload more test images
