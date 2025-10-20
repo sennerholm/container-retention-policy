@@ -31,7 +31,7 @@ jobs:
           rust-log: container_retention_policy=debug
 
       - uses: sennerholm/container-retention-policy@fetch-digests
-        name: Delete multi-2
+        name: Delete multi-2 or not because it's part of multi-1
         with:
           account: user
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -42,6 +42,19 @@ jobs:
           timestamp-to-use: created_at
           dry-run: true
           rust-log: container_retention_policy=debug
+  
+      - uses: sennerholm/container-retention-policy@fetch-digests
+        name: Delete all except fetch-digests
+        with:
+          account: user
+          token: ${{ secrets.GITHUB_TOKEN }}
+          cut-off: 30m
+          image-names: container-retention-policy
+          image-tags: '!fetch-digests'
+          tag-selection: both
+          timestamp-to-use: created_at
+          dry-run: true
+          rust-log: container_retention_policy=debug          
           
   produce:
     runs-on: ubuntu-latest
