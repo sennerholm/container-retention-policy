@@ -31,7 +31,7 @@ jobs:
           rust-log: container_retention_policy=debug
 
       - uses: sennerholm/container-retention-policy@fetch-digests
-        name: Delete multi-2 or not because it's part of multi-1
+        name: Delete multi-2
         with:
           account: user
           token: ${{ secrets.GITHUB_TOKEN }}
