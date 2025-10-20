@@ -40,7 +40,7 @@ jobs:
           image-tags: '!fetch-digests !multi-1 !test-2* !test-3* !test-4* !test-5*'
           tag-selection: both
           timestamp-to-use: created_at
-          dry-run: true
+          dry-run: false
           rust-log: container_retention_policy=debug
   
       - uses: sennerholm/container-retention-policy@fetch-digests
@@ -53,7 +53,7 @@ jobs:
           image-tags: '!fetch-digests'
           tag-selection: both
           timestamp-to-use: created_at
-          dry-run: true
+          dry-run: false
           rust-log: container_retention_policy=debug          
           
   produce:
